@@ -1,0 +1,8 @@
+.env
+/alert_venv
+__pycache__/
+*.py[cod]
+*$py.class
+temp*.__pycache__
+/logs
+*.log
