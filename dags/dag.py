@@ -57,7 +57,6 @@ def checking_logs():
                        str(pendulum.now().int_timestamp) + '.csv')
             raise Exception(error_decoder[error_string])
         else:
-            # logging.info(error_decoder[error_string])
             os.replace(raw_file, file_path_good +
                        file_name[:-4] +
                        str(pendulum.now().int_timestamp) + '.csv')
