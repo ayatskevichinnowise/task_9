@@ -6,3 +6,4 @@ __pycache__/
 temp*.__pycache__
 /logs
 *.log
+/config

@@ -14,13 +14,13 @@ load_dotenv()
 # logging.config.fileConfig(fname=os.getenv('CONFIG_PATH'))
 
 default_args = {
-    'email': os.getenv('EMAIL'),
+    'email': os.getenv('EMAIL2'),
     'email_on_failure': True,
 }
 
 
 @dag(schedule=None, start_date=pendulum.now(), catchup=False, default_args=default_args)
-def checking_logs():
+def checking_logs2():
     @task
     def read_data(raw_file: str, skip_rows: int=1, names: list=[
             'error_code', 'error_message', 'severity', 'log_location',
@@ -63,6 +63,10 @@ def checking_logs():
             # logging.info(error_decoder[error_string])
             os.replace(raw_file, file_path_good + 
                         file_name[:-4] + str(pendulum.now().int_timestamp) + '.csv')
+    
+    @task
+    def alert():
+        raise Exception(f'FILE: {raw_file}. ERROR:' + str(error_decoder['10']))
 
 
     file_name = os.getenv('FILE_NAME')
@@ -78,10 +82,10 @@ def checking_logs():
                                poke_interval=10,
                                filepath=raw_file
                                )
-
-    file = wait_for_file >> read_data(raw_file)
-    prep_file = data_preparation(file)
-    move_file(errors(prep_file))
+    alert()
+    # file = wait_for_file >> read_data(raw_file)
+    # prep_file = data_preparation(file)
+    # move_file(errors(prep_file))
 
     
-checking_logs()
+checking_logs2()
