@@ -1,6 +1,0 @@
-{
-    "00": "Everything is fine!",
-    "10": "ATTENTION: There are too many errors in 1 minute in logs!",
-    "01": "ATTENTION: There are too many errors in 1 hour in 1 bundle in logs!",
-    "11": "ATTENTION: There are too many errors in 1 minute and also in 1 hour in 1 bundle in logs!"
-}

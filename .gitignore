@@ -1,9 +1,11 @@
 .env
 /alert_venv
 /config
+/garbage
 __pycache__/
 *.py[cod]
 *$py.class
 temp*.__pycache__
 /logs
 *.log
+*.csv
