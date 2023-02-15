@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  webserver:
+    build: .
+    container_name: airflow-webserver
+    restart: always
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./dags:/opt/airflow/dags    
+    environment:
+      AIRFLOW__CORE__ENABLE_XCOM_PICKLING: 'True'
+      AIRFLOW__SMTP__SMTP_HOST: 'SMTP.GOOGLEMAIL.COM'
+      AIRFLOW__SMTP__SMTP_USER: ${EMAIL}
+      AIRFLOW__SMTP__SMTP_PASSWORD: ${PASSWORD}
+      AIRFLOW__SMTP__SMTP_MAIL_FROM: ${EMAIL}
+      AIRFLOW__SMTP__SMTP_PORT: '587'
+    command: bash /entrypoint.sh

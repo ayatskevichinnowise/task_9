@@ -9,3 +9,4 @@ temp*.__pycache__
 /logs
 *.log
 *.csv
+*.txt

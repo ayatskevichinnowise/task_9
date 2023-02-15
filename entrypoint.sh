@@ -1,13 +1,6 @@
-#!/bin/sh
+#!/bin/bash
 
-airflow initdb
-airflow users create \
-    --username admin \
-    --password admin \
-    --firstname Firstname \
-    --lastname Lastname \
-    --role Admin \
-    --email email@example.com
+airflow db init
+airflow users create --username admin --password admin --firstname Firstname --lastname Lastname --role Admin --email email@example.com
 
-airflow webserver -dp 8080 &
-airflow scheduler -d
+exec airflow webserver -p 8080 & exec airflow scheduler

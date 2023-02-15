@@ -17,7 +17,7 @@ default_args = {
 
 @dag(schedule=None, start_date=pendulum.now(), catchup=False,
      default_args=default_args)
-def checking_logs():
+def checking_logs_b():
     @task
     def read_data(raw_file: str, skip_rows: int = 1, names: list = [
             'error_code', 'error_message', 'severity', 'log_location',
@@ -62,11 +62,10 @@ def checking_logs():
                        str(pendulum.now().int_timestamp) + '.csv')
 
     file_name = os.getenv('FILE_NAME')
-    file_path = os.getenv('FILE_PATH')
+    raw_file = os.getenv('RAW_FILE')
     file_path_bad = os.getenv('FILE_PATH_BAD')
     file_path_good = os.getenv('FILE_PATH_GOOD')
-    raw_file = file_path + file_name
-    with open(os.getenv('ERROR_LIST', 'r')) as f:
+    with open(os.getenv('ERROR_LIST')) as f:
         error_decoder = json.load(f)
 
     wait_for_file = FileSensor(task_id='wait_for_file',
@@ -79,4 +78,4 @@ def checking_logs():
     move_file(errors(prep_file))
 
 
-checking_logs()
+checking_logs_b()
