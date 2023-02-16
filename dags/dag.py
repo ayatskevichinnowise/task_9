@@ -15,7 +15,7 @@ default_args = {
 }
 
 
-@dag(schedule=None, start_date=pendulum.now(), catchup=False,
+@dag(schedule="@hourly", start_date=pendulum.now(), catchup=False,
      default_args=default_args)
 def checking_logs_b():
     @task
