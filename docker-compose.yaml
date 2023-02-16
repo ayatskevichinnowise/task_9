@@ -10,10 +10,11 @@ services:
     volumes:
       - ./dags:/opt/airflow/dags    
     environment:
+      EMAIL: ${EMAIL}
       AIRFLOW__CORE__ENABLE_XCOM_PICKLING: 'True'
       AIRFLOW__SMTP__SMTP_HOST: 'SMTP.GOOGLEMAIL.COM'
       AIRFLOW__SMTP__SMTP_USER: ${EMAIL}
       AIRFLOW__SMTP__SMTP_PASSWORD: ${PASSWORD}
-      AIRFLOW__SMTP__SMTP_MAIL_FROM: ${EMAIL}
       AIRFLOW__SMTP__SMTP_PORT: '587'
+      AIRFLOW__SMTP__SMTP_MAIL_FROM: ${EMAIL}
     command: bash /entrypoint.sh
